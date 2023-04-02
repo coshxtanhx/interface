@@ -18,8 +18,6 @@ def activate_opencv():
     global capture, mp_face_mesh
     capture = cv.VideoCapture(0)
     mp_face_mesh = mp.solutions.face_mesh
-    ret, frame = capture.read()
-    cv.imshow('Camera', frame)
 
 def run_opencv():
     with mp_face_mesh.FaceMesh(max_num_faces = 1,
@@ -41,6 +39,7 @@ def run_opencv():
             (r_cx, r_cy), r_rad = cv.minEnclosingCircle(mesh_points[RIGHT_IRIS])
             l_center = np.array([l_cx, l_cy], dtype=np.int32)
             r_center = np.array([r_cx, r_cy], dtype=np.int32)
-            current_gaze.append((l_center, r_center))
+            l_and_r_center = (l_center[0] + r_center[0], l_center[1] + r_center[1])
+            current_gaze.append(l_and_r_center)
 
-        cv.imshow('Camera', frame)
+        #cv.imshow('Camera', frame)

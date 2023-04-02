@@ -5,6 +5,7 @@ import module_system.game_framework as gf
 import module_system.game_world as gw
 from module_obj.background import Background
 from module_obj.number import Number
+from module_obj.information import Information
 
 def handle_events():
     events = get_events()
@@ -17,7 +18,9 @@ def handle_events():
 
 def enter():
     sv.background = Background()
+    sv.information = Information()
     gw.add_object(sv.background, 'bg')
+    gw.add_object(sv.information, 'ui')
 
 def exit():
     gw.clear_world()
