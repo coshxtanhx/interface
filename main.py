@@ -8,6 +8,7 @@ import module_system.opencv_manager as om
 
 om.activate_opencv()
 pico2d.open_canvas(UI_WIDTH, UI_HEIGHT)
+
 gf.activate_game_framework('play_state')
 
 om.capture.release()
