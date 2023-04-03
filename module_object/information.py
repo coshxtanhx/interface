@@ -1,11 +1,11 @@
 from pico2d import *
+from random import *
 from module_other.coordinates import *
 import module_system.server as sv
 import module_system.game_framework as gf
 import module_system.game_world as gw
-from module_object.number import Number
-
-debug_mode = 0
+from module_system.debug_manager import *
+import module_system.stage_manager as sm
 
 class Information:
     image = dict()
@@ -30,7 +30,7 @@ class Information:
             if self.time_remain > 0.0:
                 self.time_remain -= gf.elapsed_time
             elif self.time_remain <= 0.0:
+                sm.STAGE.start(0)
                 gw.remove_object(self)
-                gw.add_object(Number(5, '아라비아'), 'number')
     def delete_from_server(self):
         sv.information = None

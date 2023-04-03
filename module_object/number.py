@@ -9,18 +9,20 @@ LANG_LIST = ['아라비아', '순우리말', '한자어']
 
 class Number:
     font = None
-    def __init__(self, number = None, lang = None):
+    font_size = { '아라비아': 50, '한자어': 25, '순우리말': 25 }
+    def __init__(self, number = None, lang = None, pos = None):
         self.number = number if number else randint(1, 99)
         self.lang = lang if lang else choice(LANG_LIST)
+        self.pos = list(POS_NUMBER[pos]) if pos else list(POS_NUMBER[choice(POS_RANGE)])
         self.number_string = int_to_string(self.number, self.lang)
-        self.string_volume = len(self.number_string)
+        self.length = len(self.number_string)
+        correct_pos(self.pos, self.length, self.lang)
         if not Number.font:
-            self.font = load_font('font/MaruBuri-Bold.ttf', 50)
+            self.font = load_font('font/MaruBuri-Bold.ttf', Number.font_size[self.lang])
     def update(self):
         pass
     def draw(self):
-        self.font.draw(UI_WIDTH//2, UI_HEIGHT//2, \
-            self.number_string, COLOR_YELLOW)
+        self.font.draw(*self.pos, self.number_string, COLOR_YELLOW)
     def delete_from_server(self):
         sv.numbers.remove(self)
 
