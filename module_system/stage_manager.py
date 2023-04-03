@@ -81,7 +81,7 @@ def randlang(n=3):
     return choice(lang_type[0:n])
 
 class STAGE:
-    current_level = 15
+    current_level = 9
     def shuffle_stage():
         for a, b in ((2,3), (4,5), (6,7), (6,8), (6,9), (7,8), (7,9), (8,9)):
             if randint(0,1):
