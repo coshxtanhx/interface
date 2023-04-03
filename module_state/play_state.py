@@ -4,9 +4,7 @@ import module_system.server as sv
 import module_system.game_framework as gf
 import module_system.game_world as gw
 from module_object.background import Background
-from module_object.number import Number
 from module_object.information import Information
-import module_system.opencv_manager as om
 import module_system.stage_manager as sm
 
 def handle_events():
@@ -19,6 +17,7 @@ def handle_events():
             gf.change_state('', None)
 
 def enter():
+    sm.STAGE.shuffle_stage()
     sv.background = Background()
     sv.information.append(Information('play'))
     sv.information.append(Information('exit'))
@@ -39,5 +38,4 @@ def draw_all():
 def update():
     for objs in gw.all_objects_copy():
         objs.update()
-    if om.check_gaze():
-        sm.STAGE.end()
+    sm.STAGE.check_end()

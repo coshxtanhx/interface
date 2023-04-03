@@ -1,6 +1,6 @@
 UI_WIDTH, UI_HEIGHT = 1120, 640
 
-EXTRA_PIXEL = 50
+EXTRA_PIXEL = 70
 
 X, Y = 0, 1
 
@@ -26,8 +26,8 @@ def correct_pos(original_pos, length, lang):
     if lang == '아라비아':
         for i in range(1, 3):
             if length == i:
-                original_pos[X] -= 10 * i
+                original_pos[X] -= 12 * i
     else:
         for i in range(1, 5):
             if length == i:
-                original_pos[X] -= 16 * i
+                original_pos[X] -= 13 * i

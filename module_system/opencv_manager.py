@@ -12,9 +12,9 @@ RIGHT_IRIS = [ 469,470,471,472 ]
 capture = None
 mp_face_mesh = None
 
-DEQUE_SIZE = 30
-PRECISION_X = 10
-PRECISION_Y = 1
+DEQUE_SIZE = 20
+PRECISION_X = 10.0
+PRECISION_Y = 1.05
 
 gaze_x_deque = deque([], maxlen=DEQUE_SIZE)
 gaze_y_deque = deque([], maxlen=DEQUE_SIZE)
@@ -50,14 +50,12 @@ def check_gaze():
         v += (gaze - average_x) ** 2
     v /= DEQUE_SIZE
     if v > PRECISION_X:
-        print(v)
         return False
     
     for gaze in gaze_y_deque:
         v += (gaze - average_y) ** 2
     v /= DEQUE_SIZE
     if v > PRECISION_Y:
-        print(v)
         return False
     
     clear_gaze_deque()

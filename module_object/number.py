@@ -9,7 +9,7 @@ LANG_LIST = ['아라비아', '순우리말', '한자어']
 
 class Number:
     font = None
-    font_size = { '아라비아': 50, '한자어': 25, '순우리말': 25 }
+    font_size = { '아라비아': 30, '한자어': 20, '순우리말': 20 }
     def __init__(self, number = None, lang = None, pos = None):
         self.number = number if number else randint(1, 99)
         self.lang = lang if lang else choice(LANG_LIST)
