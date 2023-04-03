@@ -12,9 +12,53 @@ RIGHT_IRIS = [ 469,470,471,472 ]
 capture = None
 mp_face_mesh = None
 
-current_gaze = deque([], maxlen=30)
+DEQUE_SIZE = 30
+PRECISION_X = 10
+PRECISION_Y = 1
+
+gaze_x_deque = deque([], maxlen=DEQUE_SIZE)
+gaze_y_deque = deque([], maxlen=DEQUE_SIZE)
+accumulated_time = 0.0
 
 def activate_opencv():
     global capture, mp_face_mesh
     capture = cv.VideoCapture(0)
     mp_face_mesh = mp.solutions.face_mesh
+
+def add_gaze_to_deque(x, y, t):
+    global accumulated_time
+    accumulated_time += t
+    if accumulated_time >= 0.1:
+        accumulated_time -= 0.1
+        gaze_x_deque.append(x)
+        gaze_y_deque.append(y)
+
+def clear_gaze_deque():
+    global accumulated_time, gaze_x_deque, gaze_y_deque
+    accumulated_time = 0.0
+    gaze_x_deque = deque([], maxlen=DEQUE_SIZE)
+    gaze_y_deque = deque([], maxlen=DEQUE_SIZE)
+
+def check_gaze():
+    if len(gaze_x_deque) != DEQUE_SIZE:
+        return False
+    average_x = sum(gaze_x_deque) / DEQUE_SIZE
+    average_y = sum(gaze_y_deque) / DEQUE_SIZE
+
+    v = 0
+    for gaze in gaze_x_deque:
+        v += (gaze - average_x) ** 2
+    v /= DEQUE_SIZE
+    if v > PRECISION_X:
+        print(v)
+        return False
+    
+    for gaze in gaze_y_deque:
+        v += (gaze - average_y) ** 2
+    v /= DEQUE_SIZE
+    if v > PRECISION_Y:
+        print(v)
+        return False
+    
+    clear_gaze_deque()
+    return True

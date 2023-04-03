@@ -63,7 +63,7 @@ def state_act(next_module_str):
                 r_center = np.array([r_cx, r_cy], dtype=np.int32)
             
                 l_and_r_center = (l_center[0] + r_center[0], l_center[1] + r_center[1])
-                om.current_gaze.append(l_and_r_center)
+                om.add_gaze_to_deque(*l_and_r_center, elapsed_time)
 
             cur_module.draw_all()
             cur_module.handle_events()

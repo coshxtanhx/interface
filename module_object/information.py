@@ -30,7 +30,7 @@ class Information:
             if self.time_remain > 0.0:
                 self.time_remain -= gf.elapsed_time
             elif self.time_remain <= 0.0:
-                sm.STAGE.start(0)
+                sm.STAGE.start()
                 gw.remove_object(self)
     def delete_from_server(self):
         sv.information = None

@@ -6,6 +6,8 @@ import module_system.game_world as gw
 from module_object.background import Background
 from module_object.number import Number
 from module_object.information import Information
+import module_system.opencv_manager as om
+import module_system.stage_manager as sm
 
 def handle_events():
     events = get_events()
@@ -37,3 +39,5 @@ def draw_all():
 def update():
     for objs in gw.all_objects_copy():
         objs.update()
+    if om.check_gaze():
+        sm.STAGE.end()
