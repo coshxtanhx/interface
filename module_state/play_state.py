@@ -3,9 +3,9 @@ from module_system.event_table import *
 import module_system.server as sv
 import module_system.game_framework as gf
 import module_system.game_world as gw
-from module_obj.background import Background
-from module_obj.number import Number
-from module_obj.information import Information
+from module_object.background import Background
+from module_object.number import Number
+from module_object.information import Information
 
 def handle_events():
     events = get_events()
@@ -18,9 +18,12 @@ def handle_events():
 
 def enter():
     sv.background = Background()
-    sv.information = Information()
+    sv.information.append(Information('play'))
+    sv.information.append(Information('exit'))
+    sv.information.append(Information('start'))
+    gw.add_objects(sv.numbers, 'number')
     gw.add_object(sv.background, 'bg')
-    gw.add_object(sv.information, 'ui')
+    gw.add_objects(sv.information, 'ui')
 
 def exit():
     gw.clear_world()

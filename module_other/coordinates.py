@@ -1,1 +1,6 @@
 UI_WIDTH, UI_HEIGHT = 1120, 640
+
+POS_NUMBER = [
+    (UI_WIDTH // 2, UI_HEIGHT // 2),
+    (50, 50)
+]
