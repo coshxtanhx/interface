@@ -2,11 +2,21 @@ UI_WIDTH, UI_HEIGHT = 1120, 640
 
 EXTRA_PIXEL = 70
 
-X, Y = 0, 1
-
 POS_RANGE = range(1, 10)
-CENTER, LEFT_TOP, LEFT_BOTTOM, LEFT, RIGHT_TOP, RIGHT_BOTTOM,\
-RIGHT, TOP, BOTTOM, CENTER_LEFT, CENTER_RIGHT = range(1, 12)
+LEFT_TOP, TOP, RIGHT_TOP, LEFT, CENTER, RIGHT, LEFT_BOTTOM, \
+    BOTTOM, RIGHT_BOTTOM, CENTER_LEFT, CENTER_RIGHT = range(1, 12)
+
+POS_STR = {
+    CENTER: '중앙',
+    LEFT_TOP: '좌측 상단',
+    LEFT_BOTTOM: '좌측 하단',
+    LEFT: '좌측',
+    RIGHT_TOP: '우측 상단',
+    RIGHT_BOTTOM: '우측 하단',
+    RIGHT: '우측',
+    TOP: '상단',
+    BOTTOM: '하단',
+}
 
 POS_NUMBER = {
     CENTER: (UI_WIDTH // 2, UI_HEIGHT // 2),
@@ -26,8 +36,8 @@ def correct_pos(original_pos, length, lang):
     if lang == '아라비아':
         for i in range(1, 3):
             if length == i:
-                original_pos[X] -= 12 * i
+                original_pos[0] -= 12 * i
     else:
         for i in range(1, 5):
             if length == i:
-                original_pos[X] -= 13 * i
+                original_pos[0] -= 13 * i

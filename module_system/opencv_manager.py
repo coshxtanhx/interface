@@ -20,6 +20,9 @@ gaze_x_deque = deque([], maxlen=DEQUE_SIZE)
 gaze_y_deque = deque([], maxlen=DEQUE_SIZE)
 accumulated_time = 0.0
 
+average_x = None
+average_y = None
+
 def activate_opencv():
     global capture, mp_face_mesh
     capture = cv.VideoCapture(0)
@@ -40,6 +43,7 @@ def clear_gaze_deque():
     gaze_y_deque = deque([], maxlen=DEQUE_SIZE)
 
 def check_gaze():
+    global average_x, average_y
     if len(gaze_x_deque) != DEQUE_SIZE:
         return False
     average_x = sum(gaze_x_deque) / DEQUE_SIZE
