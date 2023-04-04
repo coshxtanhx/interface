@@ -58,5 +58,4 @@ def check_gaze():
     if v > PRECISION_Y:
         return False
     
-    clear_gaze_deque()
     return True

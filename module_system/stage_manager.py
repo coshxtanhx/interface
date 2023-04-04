@@ -113,6 +113,7 @@ class STAGE:
                 [[number_list[i], randlang(3), pos_list[i]] for i in range(n_select)]
             )
     def start():
+        om.clear_gaze_deque()
         STAGE.started = True
         for attribute in stages[STAGE.current_level]:
             sv.numbers.append(Number(*attribute))
