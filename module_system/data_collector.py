@@ -1,5 +1,7 @@
-from module_other.coordinates import *
+from random import *
 from math import *
+from module_other.coordinates import *
+import module_system.soundfile_manager as sfm
 import pickle
 
 class GazePosition:
@@ -48,6 +50,7 @@ def save_data():
     file = open('data/save_data.sav', 'wb')
     pickle.dump(user_gaze_data, file)
     file.close()
+    sfm.sound_effect.play(sfm.SE_COMPLETED)
 
 def guess_gaze(xy_pos):
     min_distance = float('inf')
