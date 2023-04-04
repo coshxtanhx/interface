@@ -81,7 +81,8 @@ def randlang(n=3):
     return choice(lang_type[0:n])
 
 class STAGE:
-    current_level = 9
+    started = False
+    current_level = 1
     def shuffle_stage():
         for a, b in ((2,3), (4,5), (6,7), (6,8), (6,9), (7,8), (7,9), (8,9)):
             if randint(0,1):
@@ -112,11 +113,12 @@ class STAGE:
                 [[number_list[i], randlang(3), pos_list[i]] for i in range(n_select)]
             )
     def start():
+        STAGE.started = True
         for attribute in stages[STAGE.current_level]:
             sv.numbers.append(Number(*attribute))
         gw.add_objects(sv.numbers, 'number')
     def check_end():
-        if om.check_gaze():
+        if STAGE.started and om.check_gaze():
             STAGE.end()
     def end():
         for number in sv.numbers.copy():
