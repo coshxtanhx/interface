@@ -53,7 +53,7 @@ def save_data():
     file.close()
 
     file = open('data/gaze_list.sav', 'wb')
-    pickle.dump((om.gaze_x_list, om.gaze_y_list), file)
+    pickle.dump((list(om.whole_gaze_x_deque), list(om.whole_gaze_y_deque)), file)
     file.close()
 
     sfm.sound_effect.play(sfm.SE_COMPLETED)
