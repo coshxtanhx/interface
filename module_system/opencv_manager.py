@@ -14,7 +14,8 @@ RIGHT_IRIS = [ 469,470,471,472 ]
 capture = None
 mp_face_mesh = None
 
-DEQUE_SIZE = 20
+GAZE_TIMER = 2.0
+DEQUE_SIZE = int(GAZE_TIMER * 10)
 PRECISION_X = 10.0
 PRECISION_Y = 1.05
 

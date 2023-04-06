@@ -3,6 +3,7 @@ import cv2 as cv
 import numpy as np
 import mediapipe as mp
 import module_state.play_state
+import module_state.drawing_heatmap_state
 from pico2d import *
 import module_system.game_world as gw
 from module_other.coordinates import *
