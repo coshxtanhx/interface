@@ -3,7 +3,7 @@ import cv2 as cv
 import numpy as np
 import mediapipe as mp
 import module_state.play_state
-import module_state.drawing_heatmap_state
+import module_system.stage_manager as sm
 from pico2d import *
 import module_system.game_world as gw
 from module_other.coordinates import *
@@ -48,23 +48,25 @@ def state_act(next_module_str):
         while running:
             elapsed_time = time() - start_time
             start_time = time()
-            ret, frame = om.capture.read()
-            if not ret:
-                break
-            if om.capture.get(cv.CAP_PROP_POS_FRAMES) == om.capture.get(cv.CAP_PROP_FRAME_COUNT):
-                om.capture.set(cv.CAP_PROP_POS_FRAMES, 0)
-            img_h, img_w = frame.shape[:2]
-            results = face_mesh.process(frame)
-            if results.multi_face_landmarks:
-                mesh_points = np.array([np.multiply([p.x, p.y], [img_w, img_h]).astype(int)
+
+            if sm.STAGE.started:
+                ret, frame = om.capture.read()
+                if not ret:
+                    break
+                if om.capture.get(cv.CAP_PROP_POS_FRAMES) == om.capture.get(cv.CAP_PROP_FRAME_COUNT):
+                    om.capture.set(cv.CAP_PROP_POS_FRAMES, 0)
+                img_h, img_w = frame.shape[:2]
+                results = face_mesh.process(frame)
+                if results.multi_face_landmarks:
+                    mesh_points = np.array([np.multiply([p.x, p.y], [img_w, img_h]).astype(int)
                                        for p in results.multi_face_landmarks[0].landmark])
-                (l_cx, l_cy), l_rad = cv.minEnclosingCircle(mesh_points[om.LEFT_IRIS])
-                (r_cx, r_cy), r_rad = cv.minEnclosingCircle(mesh_points[om.RIGHT_IRIS])
-                l_center = np.array([l_cx, l_cy], dtype=np.int32)
-                r_center = np.array([r_cx, r_cy], dtype=np.int32)
+                    (l_cx, l_cy), l_rad = cv.minEnclosingCircle(mesh_points[om.LEFT_IRIS])
+                    (r_cx, r_cy), r_rad = cv.minEnclosingCircle(mesh_points[om.RIGHT_IRIS])
+                    l_center = np.array([l_cx, l_cy], dtype=np.int32)
+                    r_center = np.array([r_cx, r_cy], dtype=np.int32)
             
-                l_and_r_center = (l_center[0] + r_center[0], l_center[1] + r_center[1])
-                om.add_gaze_to_deque(*l_and_r_center, elapsed_time)
+                    l_and_r_center = (l_center[0] + r_center[0], l_center[1] + r_center[1])
+                    om.add_gaze_to_container(*l_and_r_center, elapsed_time)
 
             cur_module.draw_all()
             cur_module.handle_events()

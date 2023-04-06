@@ -1,10 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import interface.module_system.opencv_manager as om
+import pickle
+
+try:
+    file = open('data/gaze_list.sav', 'rb')
+except:
+    input('ERROR')
+    exit()
+data = pickle.load(file)
+
+file.close()
 
 # x, y 값 지정
-x = om.gaze_x_deque
-y = om.gaze_y_deque
+x = data[0]
+y = data[1]
 
 # x, y 값에 해당하는 히트맵 데이터 생성
 heatmap, xedges, yedges = np.histogram2d(x, y, bins=(5, 5))

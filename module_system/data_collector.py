@@ -2,6 +2,7 @@ from random import *
 from math import *
 from module_other.coordinates import *
 import module_system.soundfile_manager as sfm
+import module_system.opencv_manager as om
 import pickle
 
 class GazePosition:
@@ -47,9 +48,14 @@ def save_data():
             sum_of_data += data
         user_gaze_data[pos] = sum_of_data // data_len
 
-    file = open('data/save_data.sav', 'wb')
+    file = open('data/eight_direction.sav', 'wb')
     pickle.dump(user_gaze_data, file)
     file.close()
+
+    file = open('data/gaze_list.sav', 'wb')
+    pickle.dump((om.gaze_x_list, om.gaze_y_list), file)
+    file.close()
+
     sfm.sound_effect.play(sfm.SE_COMPLETED)
 
 def guess_gaze(xy_pos):

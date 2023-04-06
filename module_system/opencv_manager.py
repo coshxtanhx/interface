@@ -21,6 +21,10 @@ PRECISION_Y = 1.05
 
 gaze_x_deque = deque([], maxlen=DEQUE_SIZE)
 gaze_y_deque = deque([], maxlen=DEQUE_SIZE)
+
+gaze_x_list = []
+gaze_y_list = []
+
 accumulated_time = 0.0
 
 average_x = None
@@ -31,13 +35,16 @@ def activate_opencv():
     capture = cv.VideoCapture(0)
     mp_face_mesh = mp.solutions.face_mesh
 
-def add_gaze_to_deque(x, y, t):
+def add_gaze_to_container(x, y, t):
     global accumulated_time
     accumulated_time += t
     if accumulated_time >= 0.1:
         accumulated_time -= 0.1
         gaze_x_deque.append(x)
         gaze_y_deque.append(y)
+
+        gaze_x_list.append(x)
+        gaze_y_list.append(y)
 
 def clear_gaze_deque():
     global accumulated_time, gaze_x_deque, gaze_y_deque
