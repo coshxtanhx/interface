@@ -12,8 +12,8 @@ data = pickle.load(file)
 file.close()
 
 # x, y 값 지정
-x = data[0]
-y = data[1]
+x = [-i for i in data[0]]
+y = [-i for i in data[1]]
 
 # x, y 값에 해당하는 히트맵 데이터 생성
 heatmap, xedges, yedges = np.histogram2d(x, y, bins=(5, 5))
