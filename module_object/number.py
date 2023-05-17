@@ -23,7 +23,7 @@ class Number:
         pass
     def draw(self):
         if self.number == get_max_number():
-            color = (255, 0, 0)  # Red color for the maximum number
+            color = (255, 105, 180)  # Red color for the maximum number
         else:
             color = COLOR_YELLOW
         self.font.draw(*self.pos, self.number_string, color)
