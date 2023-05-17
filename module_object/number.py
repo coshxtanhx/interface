@@ -2,6 +2,7 @@ from pico2d import *
 from module_other.coordinates import *
 from random import *
 import module_system.server as sv
+import module_system.stage_manager as st
 
 COLOR_YELLOW = (255, 255, 0)
 
@@ -22,8 +23,12 @@ class Number:
     def update(self):
         pass
     def draw(self):
-        if self.number == get_max_number():
-            color = (255, 105, 180)  # Red color for the maximum number
+        max_number = get_max_number()
+        if self.number == max_number:
+            if st.STAGE.current_level <= 9:
+                color = (255, 105, 180)  # 분홍색
+            else:
+                color = COLOR_YELLOW
         else:
             color = COLOR_YELLOW
         self.font.draw(*self.pos, self.number_string, color)
@@ -65,4 +70,6 @@ def get_max_number():
     for number in sv.numbers:
         if number.number > max_number:
             max_number = number.number
+    if st.STAGE.current_level > 9:
+        max_number = max(max_number, 9)  # 9스테이지 이후에도 최소값은 9로 설정
     return max_number
