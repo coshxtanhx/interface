@@ -22,7 +22,13 @@ class Number:
     def update(self):
         pass
     def draw(self):
-        self.font.draw(*self.pos, self.number_string, COLOR_YELLOW)
+        if self.number == get_max_number():
+            color = (255, 0, 0)  # Red color for the maximum number
+        else:
+            color = COLOR_YELLOW
+        self.font.draw(*self.pos, self.number_string, color)
+
+
     def delete_from_server(self):
         sv.numbers.remove(self)
 
@@ -53,3 +59,10 @@ def int_to_string(n, lang):
             result += tens[ten_digit_number]
         result += digits[n % 10]
         return result
+
+def get_max_number():
+    max_number = -1
+    for number in sv.numbers:
+        if number.number > max_number:
+            max_number = number.number
+    return max_number
