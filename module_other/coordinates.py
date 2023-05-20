@@ -35,12 +35,12 @@ POS_NUMBER = {
 }
 
 VECTOR_IN_CANVAS = {
-    LEFT_TOP: (UI_WIDTH // 2, UI_HEIGHT // 2),
-    LEFT_BOTTOM: (UI_WIDTH // 2, -UI_HEIGHT // 2),
-    LEFT: (UI_WIDTH // 2, 0),
-    RIGHT_TOP: (-UI_WIDTH // 2, UI_HEIGHT // 2),
-    RIGHT_BOTTOM: (-UI_WIDTH // 2, -UI_HEIGHT // 2),
-    RIGHT: (-UI_WIDTH // 2, 0),
+    LEFT_TOP: (-UI_WIDTH // 2, UI_HEIGHT // 2),
+    LEFT_BOTTOM: (-UI_WIDTH // 2, -UI_HEIGHT // 2),
+    LEFT: (-UI_WIDTH // 2, 0),
+    RIGHT_TOP: (UI_WIDTH // 2, UI_HEIGHT // 2),
+    RIGHT_BOTTOM: (UI_WIDTH // 2, -UI_HEIGHT // 2),
+    RIGHT: (UI_WIDTH // 2, 0),
     TOP: (0, UI_HEIGHT // 2),
     BOTTOM: (0, UI_HEIGHT // -2),
 }
@@ -104,6 +104,6 @@ def convert_pos(x, y):
             converted_gaze_y = rate_a * VECTOR_IN_CANVAS[a][1] \
                 + rate_b * VECTOR_IN_CANVAS[b][1] + UI_HEIGHT // 2
             
-            return (UI_WIDTH - converted_gaze_x, converted_gaze_y)
+            return (converted_gaze_x, converted_gaze_y)
         
     return (0, 0)

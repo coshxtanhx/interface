@@ -19,6 +19,7 @@ def handle_events():
 
 def enter():
     register_pos()
+    om.GAZE_DETECT_TIMER = 0.03
     sv.background = Background()
     sv.cursor = Cursor()
     gw.add_object(sv.background, 'bg')

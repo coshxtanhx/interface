@@ -15,6 +15,7 @@ capture = None
 mp_face_mesh = None
 
 GAZE_TIMER = 2.0
+GAZE_DETECT_TIMER = 0.1
 DEQUE_SIZE = int(GAZE_TIMER * 10)
 WHOLE_DEQUE_SIZE = 2000
 
@@ -40,8 +41,8 @@ def activate_opencv():
 def add_gaze_to_deque(x, y, t):
     global accumulated_time
     accumulated_time += t
-    if accumulated_time >= 0.1:
-        accumulated_time -= 0.1
+    if accumulated_time >= GAZE_DETECT_TIMER:
+        accumulated_time -= GAZE_DETECT_TIMER
         gaze_x_deque.append(x)
         gaze_y_deque.append(y)
 

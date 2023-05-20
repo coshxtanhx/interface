@@ -11,7 +11,6 @@ class Cursor:
         if not Cursor.image:
             Cursor.image = load_image('images/cursor.png')
     def draw(self):
-        print(self.x, self.y)
         self.image.draw(self.x, self.y)
     def update(self):
         if om.gaze_x_deque:
