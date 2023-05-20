@@ -15,7 +15,7 @@ world = dict()
 cur_world = None
 
 state_list = [
-    'play_state'
+    'play_state', 'gaze_check_state'
 ]
 
 for state_name in state_list:
@@ -44,8 +44,8 @@ def add_objects(ol, depth):
 def clear_world():
     for layer in world[cur_world]:
         layer.clear()
-    if cur_world == 'play_state':
-        sv.clear_server()
+    #if cur_world == 'play_state':
+    #    sv.clear_server()
 
 def remove_object(o):
     for layer in world[cur_world]:

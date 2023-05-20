@@ -29,8 +29,8 @@ whole_gaze_y_deque = deque([], maxlen=WHOLE_DEQUE_SIZE)
 
 accumulated_time = 0.0
 
-average_x = None
-average_y = None
+average_x = 0
+average_y = 0
 
 def activate_opencv():
     global capture, mp_face_mesh

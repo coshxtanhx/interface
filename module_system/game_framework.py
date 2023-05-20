@@ -3,6 +3,7 @@ import cv2 as cv
 import numpy as np
 import mediapipe as mp
 import module_state.play_state
+import module_state.gaze_check_state
 import module_system.stage_manager as sm
 from pico2d import *
 import module_system.game_world as gw
@@ -48,7 +49,7 @@ def state_act(next_module_str):
         while running:
             elapsed_time = time() - start_time
             start_time = time()
-            if sm.STAGE.started:
+            if True:
                 ret, frame = om.capture.read()
                 if not ret:
                     break
