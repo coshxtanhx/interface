@@ -88,10 +88,14 @@ def convert_pos(x, y):
     gaze_vector_x, gaze_vector_y = convert_pos_to_vector((x, y))
     rate_a, rate_b = None, None
     for a, b in ((TOP, RIGHT_TOP), (RIGHT_TOP, RIGHT), (RIGHT, RIGHT_BOTTOM),
-                               (RIGHT_BOTTOM, BOTTOM), (BOTTOM, LEFT_BOTTOM), (LEFT_BOTTOM, LEFT),
-                               (LEFT, LEFT_TOP), (LEFT_TOP, TOP)):
+                (RIGHT_BOTTOM, BOTTOM), (BOTTOM, LEFT_BOTTOM), (LEFT_BOTTOM, LEFT),
+                (LEFT, LEFT_TOP), (LEFT_TOP, TOP)):
         vector_a = convert_pos_to_vector(pos_in_camera[a])
         vector_b = convert_pos_to_vector(pos_in_camera[b])
+
+        if (vector_b[1] * vector_a[0] - vector_b[0] * vector_a[1]) == 0.0:
+            break
+
         rate_a = (gaze_vector_x * vector_b[1] - gaze_vector_y * vector_b[0]) \
             / (vector_b[1] * vector_a[0] - vector_b[0] * vector_a[1])
         rate_b = (gaze_vector_x * vector_a[1] - gaze_vector_y * vector_a[0]) \
