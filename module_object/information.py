@@ -15,12 +15,15 @@ class Information:
             Information.image['exit'] = load_image('images/information_how_to_exit.png')
             Information.image['start'] = \
                 [load_image('images/information_auto_start_%d.png' % i) for i in range(1, 6)]
+            Information.image['tutorial'] = load_image('images/tutorial.png')
         self.type = type
         self.image = Information.image[self.type]
         self.time_remain = 0.1 if debug_mode else 4.999
     def draw(self):
         if self.type == 'play':
             self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 + 160)
+            if sm.STAGE.current_level <= 9:
+                Information.image['tutorial'].draw(UI_WIDTH // 2, UI_HEIGHT // 2 + 100)
         elif self.type == 'exit':
             self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 - 160)
         elif self.type == 'start':
