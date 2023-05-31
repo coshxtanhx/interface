@@ -40,6 +40,12 @@ user_gaze_data = {
     BOTTOM: None
 }
 
+user_cusor_time_data = {
+    '스테이지' : [],
+    '스크린 내부시간' :[],
+    '스크린 외부시간': []
+}
+
 def save_data():
     for pos in POS_RANGE:
         sum_of_data = GazePosition(0, 0)
@@ -74,3 +80,8 @@ def add_gaze_data(xy_pos, pos = None):
         pos = guess_gaze(xy_pos)
     data = GazePosition(xy_pos[0], xy_pos[1])
     gaze_dict[pos].append(data)
+
+def save_cursor_time(current_gaze, in_screen_time, out_screen_time):
+    user_cusor_time_data['스테이지'].append(current_gaze)
+    user_cusor_time_data['스크린 내부시간'].append(in_screen_time)
+    user_cusor_time_data['스크린 외부시간'].append(out_screen_time)

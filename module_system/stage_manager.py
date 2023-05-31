@@ -137,6 +137,7 @@ class STAGE:
     def end():
         for number in sv.numbers.copy():
             gw.remove_object(number)
+        sv.cursor.save_time()
         sv.cursor.reset_time()
         STAGE.current_level += 1
         if STAGE.current_level >= 10:

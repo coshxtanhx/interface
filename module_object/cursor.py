@@ -18,3 +18,7 @@ class Cursor:
             self.x, self.y = int(self.x), int(self.y)
     def delete_from_server(self):
         sv.background = None
+
+    def reset_time(self):
+        self.in_screen_time = 0
+        self.out_screen_time = 0
