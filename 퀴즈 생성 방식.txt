@@ -1,0 +1,15 @@
+class Quiz:
+ 	멤버 변수 string - 문제 내용을 문자열 형태로 저장
+ 	멤버 변수 answer - 숫자로 저장
+
+Class Number에 멤버 변수 하나 추가:
+ 	is_answer - 정답 숫자면 True, 오답 숫자면 False
+
+ㅡㅡㅡ
+
+1. STAGE에서 Quiz 생성 // 기존 STAGE 클래스 말고 별도로 새로 만들어야?
+
+2. STAGE에서 Number 여러 개 생성
+생성된 Quiz에서 answer를 읽음
+answer의 값을 가지며 is_answer의 값이 True인 정답 숫자 생성 &
+answer의 값을 갖지 않고 is_answer의 값이 False인 오답 숫자 생성
