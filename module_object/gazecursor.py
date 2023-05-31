@@ -22,10 +22,10 @@ class GazeCursor(Cursor):
         if self.is_in_screen():
             self.in_screen = True
             self.in_screen_time += om.GAZE_DETECT_TIMER
-            self.out_screen_time = 0
+
         else:
             self.in_screen = False
-            self.in_screen_time = 0
+
             self.out_screen_time += om.GAZE_DETECT_TIMER
 
     def is_in_screen(self):

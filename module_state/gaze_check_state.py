@@ -32,21 +32,32 @@ def draw_all():
     clear_canvas()
     for objs in gw.all_objects():
         objs.draw()
+
+    # 화면 안에 있는 시간과 화면 밖에 있는 시간 표시
+    font = load_font('font/MaruBuri-Bold.ttf', 20)
+    in_screen_time = sv.cursor.in_screen_time
+    out_screen_time = sv.cursor.out_screen_time
+    font.draw(10, 30, f'In-screen time: {in_screen_time:.2f}s', (255, 255, 255))
+    font.draw(10, 70, f'Out-screen time: {out_screen_time:.2f}s', (255, 255, 255))
+
     update_canvas()
 
 def update():
     om.check_gaze()
     for objs in gw.all_objects_copy():
         objs.update()
-        # 커서의 화면 안에 있는 시간과 화면 밖에 있는 시간 출력
-    print(f'In-screen time: {sv.cursor.in_screen_time:.2f}s')
-    print(f'Out-screen time: {sv.cursor.out_screen_time:.2f}s')
+
+    # 화면 안에 있는 시간과 화면 밖에 있는 시간 출력
+    in_screen_time = sv.cursor.in_screen_time
+    out_screen_time = sv.cursor.out_screen_time
+    print(f'In-screen time: {in_screen_time:.2f}s')
+    print(f'Out-screen time: {out_screen_time:.2f}s')
 
     # 화면 안에 있는 시간과 화면 밖에 있는 시간이 임계값을 넘었을 때의 처리
-    if sv.cursor.in_screen_time > GazeCursor.IN_SCREEN_TIME_THRESHOLD:
+    if in_screen_time > GazeCursor.IN_SCREEN_TIME_THRESHOLD:
         # 화면 안에 있는 시간이 임계값을 넘었을 때의 처리
         pass
 
-    if sv.cursor.out_screen_time > GazeCursor.OUT_SCREEN_TIME_THRESHOLD:
+    if out_screen_time > GazeCursor.OUT_SCREEN_TIME_THRESHOLD:
         # 화면 밖에 있는 시간이 임계값을 넘었을 때의 처리
         pass
