@@ -22,7 +22,7 @@ def enter():
     sv.information.append(Information('play'))
     sv.information.append(Information('exit'))
     sv.information.append(Information('start'))
-    gw.add_objects(sv.numbers, 'number')
+    #gw.add_objects(sv.numbers, 'number')
     gw.add_object(sv.background, 'bg')
     gw.add_objects(sv.information, 'ui')
 

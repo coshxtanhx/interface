@@ -5,13 +5,15 @@ import module_system.server as sv
 import module_system.stage_manager as st
 
 COLOR_YELLOW = (255, 255, 0)
+COLOR_PINK = (255, 105, 180)
 
 LANG_LIST = ['아라비아', '순우리말', '한자어']
 
 class Number:
     font = None
     font_size = { '아라비아': 30, '한자어': 20, '순우리말': 20 }
-    def __init__(self, number = None, lang = None, pos = None):
+    def __init__(self, number = None, lang = None, pos = None, is_answer = None):
+        self.is_answer = None # 메인 스테이지에서만 유효한 변수
         self.number = number if number else randint(1, 99)
         self.lang = lang if lang else choice(LANG_LIST)
         self.pos = list(POS_NUMBER[pos]) if pos else list(POS_NUMBER[choice(POS_RANGE)])
@@ -21,10 +23,10 @@ class Number:
     def update(self):
         pass
     def draw(self):
-        max_number = get_max_number()
-        if self.number == max_number:
-            if st.STAGE.current_level <= 9:
-                color = (255, 105, 180)  # 분홍색
+        if st.STAGE.current_level <= 9:
+            max_number = get_max_number()
+            if self.number == max_number:
+                color = COLOR_PINK
             else:
                 color = COLOR_YELLOW
         else:

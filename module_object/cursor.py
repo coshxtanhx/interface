@@ -17,7 +17,7 @@ class Cursor:
             self.x, self.y = convert_pos(om.average_x, om.average_y)
             self.x, self.y = round(self.x), round(self.y)
     def delete_from_server(self):
-        sv.background = None
+        sv.cursor = None
 
     def reset_time(self):
         self.in_screen_time = 0

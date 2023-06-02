@@ -2,6 +2,7 @@ from pico2d import *
 from module_other.coordinates import *
 from random import *
 from collections import deque
+import module_system.server as sv
 from module_other.calculation import *
 from module_object.number import int_to_string, LANG_LIST
 
@@ -63,6 +64,9 @@ class Quiz:
 
     def update(self):
         pass
+
+    def delete_from_server(self):
+        sv.quiz = None
 
     def insert_newline(self):
         splited = self.string.split()
