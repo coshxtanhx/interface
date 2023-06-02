@@ -80,7 +80,7 @@ def convert_pos(x, y):
             / (-vector_b[1] * vector_a[0] + vector_b[0] * vector_a[1])
 
         if rate_a >= 0 and rate_b >= 0:
-            print(rate_a, rate_b)
+            #print(rate_a, rate_b)
             converted_gaze_x = rate_a * VECTOR_IN_CANVAS[a][0] \
                 + rate_b * VECTOR_IN_CANVAS[b][0] + UI_WIDTH // 2
             converted_gaze_y = rate_a * VECTOR_IN_CANVAS[a][1] \

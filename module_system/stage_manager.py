@@ -143,6 +143,7 @@ class STAGE:
         if STAGE.current_level >= 10:
             STAGE.add_stage()
         if STAGE.current_level > LAST_STAGE:
+            STAGE.started = False
             dc.save_data()
             gf.change_state('gaze_check_state', None)
         else:

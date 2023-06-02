@@ -22,6 +22,7 @@ class STAGE:
     started = False
     current_level = 1
     answer = None
+    users_answer_list = [None] + [0] * LAST_STAGE
     def create_quiz_and_numbers():
         pos_list = list(POS_WITHOUT_CENTER_TUPLE)
         shuffle(pos_list)
@@ -36,8 +37,8 @@ class STAGE:
         else:
             answer_list = [i for i in range(STAGE.answer - 2, STAGE.answer + 3)]
         for i in range(5):
-            sv.numbers.append(Number(answer_list[i], randlang(), pos_list[i]),
-                              answer_list[i] == STAGE.answer)
+            sv.numbers.append(Number(answer_list[i], randlang(), pos_list[i],
+                              answer_list[i] == STAGE.answer))
         gw.add_objects(sv.numbers, 'number')
     def start():
         om.clear_gaze_deque()
