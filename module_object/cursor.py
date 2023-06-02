@@ -15,7 +15,7 @@ class Cursor:
     def update(self):
         if om.gaze_x_deque:
             self.x, self.y = convert_pos(om.average_x, om.average_y)
-            self.x, self.y = int(self.x), int(self.y)
+            self.x, self.y = round(self.x), round(self.y)
     def delete_from_server(self):
         sv.background = None
 

@@ -19,8 +19,8 @@ GAZE_DETECT_TIMER = 0.1
 DEQUE_SIZE = int(GAZE_TIMER * 10)
 WHOLE_DEQUE_SIZE = 2000
 
-PRECISION_X = 10.0
-PRECISION_Y = 1.05
+PRECISION_X = 30.0
+PRECISION_Y = 3.15
 
 gaze_x_deque = deque([], maxlen=DEQUE_SIZE)
 gaze_y_deque = deque([], maxlen=DEQUE_SIZE)

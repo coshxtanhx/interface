@@ -7,6 +7,7 @@ from module_object.background import Background
 from module_object.gazecursor import GazeCursor
 from module_other.coordinates import *
 import module_system.opencv_manager as om
+import module_system.data_collector as dc
 
 def handle_events():
     events = get_events()
@@ -18,7 +19,7 @@ def handle_events():
             gf.change_state('', None)
 
 def enter():
-    register_pos()
+    dc.register_pos()
     om.GAZE_DETECT_TIMER = 0.03
     sv.background = Background()
     sv.cursor = GazeCursor()

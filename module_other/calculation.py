@@ -9,7 +9,8 @@ CAL_DIV = '//'
 CAL_SQRT = 'isqrt('
 CAL_SQRT_END = ' )'
 CAL_SQUARE = 'square('
-CAL_SQUARE_END = ' ) '
+CAL_SQUARE_END = ') '
+
 CAL_SPECIAL_LIST = [CAL_SQRT, CAL_SQRT_END, CAL_SQUARE, CAL_SQUARE_END]
 
 CAL_PARENTHESE_OPEN = '('
@@ -35,11 +36,11 @@ def sign_to_string(sign):
         return ' 빼기 '
     elif sign == CAL_MUL:
         if lang == WORD_MATH:
-            return ' X '
+            return ' × '
         return ' 곱하기 '
     elif sign == CAL_DIV:
         if lang == WORD_MATH:
-            return ' / '
+            return ' ÷ '
         return ' 나누기 '
     elif sign == CAL_PARENTHESE_OPEN:
         if lang == WORD_MATH:
@@ -50,10 +51,10 @@ def sign_to_string(sign):
             return ')'
         return ' 괄호 닫고'
     elif sign == CAL_SQRT:
-        return '루트 괄호 열고 '
+        return '루트 '
     elif sign == CAL_SQUARE_END:
-        return ' 괄호 닫고의 제곱'
+        return '의 제곱'
     elif sign == CAL_SQRT_END:
-        return ' 괄호 닫고'
+        return ''
     elif sign == CAL_SQUARE:
-        return '괄호 열고 '
+        return ''

@@ -46,6 +46,17 @@ user_cusor_time_data = {
     '스크린 외부시간': []
 }
 
+def register_pos():
+    try:
+        file = open('data/eight_direction.sav', 'rb')
+    except:
+        print('ERROR')
+        exit()
+    data = load(file)
+    file.close()
+    for pos in POS_RANGE:
+        user_gaze_data[pos] = (data[pos].x, data[pos].y)
+
 def save_data():
     for pos in POS_RANGE:
         sum_of_data = GazePosition(0, 0)

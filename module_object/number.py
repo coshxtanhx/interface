@@ -16,8 +16,6 @@ class Number:
         self.lang = lang if lang else choice(LANG_LIST)
         self.pos = list(POS_NUMBER[pos]) if pos else list(POS_NUMBER[choice(POS_RANGE)])
         self.number_string = int_to_string(self.number, self.lang)
-        self.length = len(self.number_string)
-        correct_pos(self.pos, self.length, self.lang)
         if not Number.font:
             self.font = load_font('font/MaruBuri-Bold.ttf', Number.font_size[self.lang])
     def update(self):
@@ -31,7 +29,7 @@ class Number:
                 color = COLOR_YELLOW
         else:
             color = COLOR_YELLOW
-        self.font.draw(*self.pos, self.number_string, color)
+        self.font.draw(*self.pos, self.number_string, color, 'c')
 
 
     def delete_from_server(self):

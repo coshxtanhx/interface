@@ -45,53 +45,28 @@ VECTOR_IN_CANVAS = {
     BOTTOM: (0, UI_HEIGHT // -2),
 }
 
-pos_in_camera = {
-    CENTER: None,
-    LEFT_TOP: None,
-    LEFT_BOTTOM: None,
-    LEFT: None,
-    RIGHT_TOP: None,
-    RIGHT_BOTTOM: None,
-    RIGHT: None,
-    TOP: None,
-    BOTTOM: None,
-}
-
-def correct_pos(original_pos, length, lang):
+def correct_pos(original_pos, length, lang='아라비아'):
     if lang == '아라비아':
-        for i in range(1, 3):
-            if length == i:
-                original_pos[0] -= 12 * i
+        original_pos[0] -= 12 * length
     else:
-        for i in range(1, 5):
-            if length == i:
-                original_pos[0] -= 13 * i
+        original_pos[0] -= 13 * length
 
 def convert_pos_to_vector(pos_xy):
+    import module_system.data_collector as dc
     x, y = pos_xy
-    vector_x = x - pos_in_camera[CENTER][0]
-    vector_y = y - pos_in_camera[CENTER][1]
+    vector_x = x - dc.user_gaze_data[CENTER][0]
+    vector_y = y - dc.user_gaze_data[CENTER][1]
     return vector_x, vector_y
 
-def register_pos():
-    try:
-        file = open('data/eight_direction.sav', 'rb')
-    except:
-        print('ERROR')
-        exit()
-    data = load(file)
-    file.close()
-    for pos in POS_RANGE:
-        pos_in_camera[pos] = (data[pos].x, data[pos].y)
-
 def convert_pos(x, y):
+    import module_system.data_collector as dc
     gaze_vector_x, gaze_vector_y = convert_pos_to_vector((x, y))
     rate_a, rate_b = None, None
     for a, b in ((TOP, RIGHT_TOP), (RIGHT_TOP, RIGHT), (RIGHT, RIGHT_BOTTOM),
                 (RIGHT_BOTTOM, BOTTOM), (BOTTOM, LEFT_BOTTOM), (LEFT_BOTTOM, LEFT),
                 (LEFT, LEFT_TOP), (LEFT_TOP, TOP)):
-        vector_a = convert_pos_to_vector(pos_in_camera[a])
-        vector_b = convert_pos_to_vector(pos_in_camera[b])
+        vector_a = convert_pos_to_vector(dc.user_gaze_data[a])
+        vector_b = convert_pos_to_vector(dc.user_gaze_data[b])
 
         if (vector_b[1] * vector_a[0] - vector_b[0] * vector_a[1]) == 0.0:
             break
@@ -102,7 +77,7 @@ def convert_pos(x, y):
             / (-vector_b[1] * vector_a[0] + vector_b[0] * vector_a[1])
 
         if rate_a >= 0 and rate_b >= 0:
-            #print(rate_a, rate_b)
+            print(rate_a, rate_b)
             converted_gaze_x = rate_a * VECTOR_IN_CANVAS[a][0] \
                 + rate_b * VECTOR_IN_CANVAS[b][0] + UI_WIDTH // 2
             converted_gaze_y = rate_a * VECTOR_IN_CANVAS[a][1] \

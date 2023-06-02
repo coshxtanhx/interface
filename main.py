@@ -7,7 +7,7 @@ import module_system.opencv_manager as om
 om.activate_opencv()
 pico2d.open_canvas(UI_WIDTH, UI_HEIGHT)
 
-gf.activate_game_framework('play_state')
+gf.activate_game_framework('play_state_2')
 
 om.capture.release()
 pico2d.close_canvas()

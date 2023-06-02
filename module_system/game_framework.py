@@ -3,6 +3,7 @@ import cv2 as cv
 import numpy as np
 import mediapipe as mp
 import module_state.play_state
+import module_state.play_state_2
 import module_state.gaze_check_state
 import module_system.stage_manager as sm
 from pico2d import *
