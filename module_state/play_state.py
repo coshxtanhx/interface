@@ -15,6 +15,8 @@ def handle_events():
             gf.change_state('', None)
         elif event == KESCD:
             gf.change_state('', None)
+        elif event == KYD:
+            gf.change_state('play_state_2', None) # 디버그 전용 기능
 
 def enter():
     sm.STAGE.shuffle_stage()

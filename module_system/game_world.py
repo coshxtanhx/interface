@@ -44,12 +44,13 @@ def add_objects(ol, depth):
 def clear_world():
     for layer in world[cur_world]:
         layer.clear()
+        sv.clear_server()
     #if cur_world == 'play_state':
     #    sv.clear_server()
 
 def remove_object(o):
     for layer in world[cur_world]:
-        if(o in layer):
+        if o in layer:
             layer.remove(o)
             #del(o)
             o.delete_from_server()

@@ -2,7 +2,7 @@ from pico2d import *
 from module_other.coordinates import *
 from random import *
 import module_system.server as sv
-import module_system.opencv_manager as om
+import module_system.game_framework as gf
 import module_system.stage_manager as sm
 
 COLOR_YELLOW = (255, 255, 0)
@@ -20,24 +20,26 @@ class Number:
         self.lang = lang if lang else choice(LANG_LIST)
         self.pos = list(POS_NUMBER[pos]) if pos else list(POS_NUMBER[choice(POS_RANGE)])
         self.number_string = int_to_string(self.number, self.lang)
+        self.where = pos
         if not Number.font:
             self.font = load_font('font/MaruBuri-Bold.ttf', Number.font_size[self.lang])
     def update(self):
         import module_system.main_stage_manager as msm
         if msm.STAGE.started:
-            if self.pos[0] - self.font.image.w // 2 <= sv.cursor.x <= \
-                    self.pos[0] + self.font.image.w // 2 and \
-                    self.pos[1] - self.font.image.h // 2 <= sv.cursor.y <= \
-                    self.pos[1] + self.font.image.h // 2:
-                self.timer -= om.accumulated_time
+            if self.pos[0] - self.font.image.w // 2 - 18 <= sv.cursor.x <= \
+                    self.pos[0] + self.font.image.w // 2 + 18 and \
+                    self.pos[1] - self.font.image.h // 2 - 18 <= sv.cursor.y <= \
+                    self.pos[1] + self.font.image.h // 2 + 18:
+                self.timer -= gf.elapsed_time
             else:
                 self.timer = 2.0
             if self.timer <= 0:
                 if self.is_answer:
-                    print("good")
                     msm.STAGE.users_answer_list[msm.STAGE.current_level] = 1
                 else:
                     msm.STAGE.users_answer_list[msm.STAGE.current_level] = -1
+                msm.STAGE.users_choice = self.where
+                msm.STAGE.end()
     def draw(self):
         if sm.STAGE.started and sm.STAGE.current_level <= 9:
             max_number = get_max_number()

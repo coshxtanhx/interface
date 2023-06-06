@@ -1,7 +1,6 @@
 import cv2 as cv
 import numpy as np
 import mediapipe as mp
-import module_system.soundfile_manager as sfm
 from collections import deque
 from random import choice
 
@@ -75,5 +74,4 @@ def check_gaze():
     if v > PRECISION_Y:
         return False
     
-    sfm.sound_effect.play(choice(sfm.SE_GAZE_CHECK))
     return True

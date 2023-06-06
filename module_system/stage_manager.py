@@ -7,6 +7,7 @@ import module_system.game_world as gw
 import module_system.opencv_manager as om
 import module_system.game_framework as gf
 import module_system.data_collector as dc
+import module_system.soundfile_manager as sfm
 
 TUTORIAL_ANSWER_IS_CENTER = [
     [randint(8,9), '아라비아', CENTER],
@@ -147,4 +148,5 @@ class STAGE:
             dc.save_data()
             gf.change_state('gaze_check_state', None)
         else:
+            sfm.sound_effect.play(choice(sfm.SE_GAZE_CHECK))
             STAGE.start()

@@ -29,7 +29,7 @@ QUIZ_NUMBER = {
     3: (12*choice([1,2,3,4,6]), choice([3,4,6,12]), randint(10,70)),
     4: (randint(65,99), randint(2,8), randint(3,8)**2),
     5: (randint(3,5), randint(14,74)),
-    6: choice([(56,35), (30,19), (98,98), (12,24), (77,4), (72,97), (88,33)]),
+    6: choice([(46,35), (30,19), (98,98), (12,24), (77,4), (72,97), (88,33)]),
     7: (randint(12,18), randint(10,11), randint(6,9)**2),
     8: (randint(14,16), randint(85,96), randint(83,99)),
     9: (randint(2,3), randint(2,3), randint(87,98), randint(86,99)),

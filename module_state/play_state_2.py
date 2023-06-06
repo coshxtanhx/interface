@@ -6,7 +6,6 @@ import module_system.game_framework as gf
 import module_system.game_world as gw
 import module_system.opencv_manager as om
 from module_object.background import Background
-from module_object.quiz import Quiz
 from module_object.gazecursor import GazeCursor
 import module_system.main_stage_manager as msm
 import module_system.data_collector as dc

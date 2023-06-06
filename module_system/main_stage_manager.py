@@ -8,6 +8,7 @@ import module_system.game_world as gw
 import module_system.opencv_manager as om
 import module_system.game_framework as gf
 import module_system.data_collector as dc
+import module_system.soundfile_manager as sfm
 
 locations = list(POS_RANGE)
 
@@ -22,9 +23,11 @@ class STAGE:
     started = False
     current_level = 1
     answer = None
+    users_choice = LEFT_BOTTOM
     users_answer_list = [None] + [0] * LAST_STAGE
     def create_quiz_and_numbers():
         pos_list = list(POS_WITHOUT_CENTER_TUPLE)
+        pos_list.remove(STAGE.users_choice)
         shuffle(pos_list)
         answer_list = None
         sv.quiz = Quiz(STAGE.current_level)
@@ -44,9 +47,9 @@ class STAGE:
         om.clear_gaze_deque()
         STAGE.started = True
         STAGE.create_quiz_and_numbers()
-    def check_end():
-        if STAGE.started and om.check_gaze():
-            STAGE.end()
+    # def check_end():
+    #     if STAGE.started and om.check_gaze():
+    #         STAGE.end()
     def end():
         for number in sv.numbers.copy():
             gw.remove_object(number)
@@ -57,4 +60,5 @@ class STAGE:
         if STAGE.current_level > LAST_STAGE:
             gf.change_state('', None)
         else:
+            sfm.sound_effect.play(choice(sfm.SE_GAZE_CHECK))
             STAGE.start()

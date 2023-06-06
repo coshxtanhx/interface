@@ -5,6 +5,7 @@ import module_system.game_framework as gf
 import module_system.game_world as gw
 from module_object.background import Background
 from module_object.gazecursor import GazeCursor
+from module_object.information import Information
 from module_other.coordinates import *
 import module_system.opencv_manager as om
 import module_system.data_collector as dc
@@ -17,13 +18,20 @@ def handle_events():
             gf.change_state('', None)
         elif event == KESCD:
             gf.change_state('', None)
+        elif event == KND:
+            gf.change_state('play_state', None)
+        elif event == KYD:
+            gf.change_state('play_state_2', None)
 
 def enter():
     dc.register_pos()
     om.GAZE_DETECT_TIMER = 0.03
     sv.background = Background()
     sv.cursor = GazeCursor()
+    sv.information.append(Information('error'))
+    sv.information.append(Information('check'))
     gw.add_object(sv.background, 'bg')
+    gw.add_objects(sv.information, 'ui')
     gw.add_object(sv.cursor, 'ui')
 
 def exit():
