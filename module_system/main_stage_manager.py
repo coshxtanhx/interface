@@ -23,7 +23,7 @@ class STAGE:
     started = False
     current_level = 1
     answer = None
-    users_choice = LEFT_BOTTOM
+    users_choice = LEFT_BOTTOM # 임의의 초깃값
     users_answer_list = [None] + [0] * LAST_STAGE
     def create_quiz_and_numbers():
         pos_list = list(POS_WITHOUT_CENTER_TUPLE)
@@ -54,8 +54,8 @@ class STAGE:
         for number in sv.numbers.copy():
             gw.remove_object(number)
         gw.remove_object(sv.quiz)
-        #sv.cursor.save_time()
-        #sv.cursor.reset_time()
+        sv.cursor.save_time()
+        sv.cursor.reset_time()
         STAGE.current_level += 1
         if STAGE.current_level > LAST_STAGE:
             gf.change_state('', None)
