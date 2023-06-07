@@ -1,11 +1,11 @@
 from pico2d import *
+from module_other.coordinates import *
 from module_system.event_table import *
 import module_system.server as sv
 import module_system.game_framework as gf
 import module_system.game_world as gw
 from module_object.background import Background
-from module_object.information import Information
-import module_system.stage_manager as sm
+from module_object.analysis import Analysis
 
 def handle_events():
     events = get_events()
@@ -15,19 +15,14 @@ def handle_events():
             gf.change_state('', None)
         elif event == KESCD:
             gf.change_state('', None)
-        elif event == KYD:
-            return
-            gf.change_state('play_state_2', None) # 디버그 전용 기능
+        else:
+            sv.analysis.handle_events(event)
 
 def enter():
-    sm.STAGE.shuffle_stage()
     sv.background = Background()
-    sv.information.append(Information('play'))
-    sv.information.append(Information('exit'))
-    sv.information.append(Information('start'))
-    #gw.add_objects(sv.numbers, 'number')
+    sv.analysis = Analysis()
     gw.add_object(sv.background, 'bg')
-    gw.add_objects(sv.information, 'ui')
+    gw.add_object(sv.analysis, 'ui')
 
 def exit():
     gw.clear_world()
@@ -41,4 +36,3 @@ def draw_all():
 def update():
     for objs in gw.all_objects_copy():
         objs.update()
-    sm.STAGE.check_end()

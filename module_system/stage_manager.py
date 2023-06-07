@@ -123,6 +123,7 @@ class STAGE:
     def start():
         om.clear_gaze_deque()
         STAGE.started = True
+        om.is_camera_activated = True
         if STAGE.current_level <= 9:
             STAGE.answer_of_tutorial = STAGE.get_answer_of_current_level()
         else:
@@ -143,6 +144,7 @@ class STAGE:
             STAGE.add_stage()
         if STAGE.current_level > LAST_STAGE:
             STAGE.started = False
+            om.is_camera_activated = False
             dc.save_data()
             gf.change_state('gaze_check_state', None)
         else:

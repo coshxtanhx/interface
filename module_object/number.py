@@ -4,9 +4,7 @@ from random import *
 import module_system.server as sv
 import module_system.game_framework as gf
 import module_system.stage_manager as sm
-
-COLOR_YELLOW = (255, 255, 0)
-COLOR_PINK = (255, 105, 180)
+from module_other.color import *
 
 LANG_LIST = ['아라비아', '순우리말', '한자어']
 

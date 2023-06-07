@@ -15,7 +15,7 @@ world = dict()
 cur_world = None
 
 state_list = [
-    'play_state', 'gaze_check_state', 'play_state_2'
+    'play_state', 'gaze_check_state', 'play_state_2', 'analysis_check_state'
 ]
 
 for state_name in state_list:

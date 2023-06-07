@@ -5,6 +5,7 @@ import mediapipe as mp
 import module_state.play_state
 import module_state.play_state_2
 import module_state.gaze_check_state
+import module_state.analysis_check_state
 import module_system.stage_manager as sm
 from pico2d import *
 import module_system.game_world as gw
@@ -50,7 +51,7 @@ def state_act(next_module_str):
         while running:
             elapsed_time = time() - start_time
             start_time = time()
-            if True:
+            if om.is_camera_activated:
                 ret, frame = om.capture.read()
                 if not ret:
                     break

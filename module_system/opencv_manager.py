@@ -32,6 +32,8 @@ accumulated_time = 0.0
 average_x = 0
 average_y = 0
 
+is_camera_activated = False
+
 def activate_opencv():
     global capture, mp_face_mesh
     capture = cv.VideoCapture(0)

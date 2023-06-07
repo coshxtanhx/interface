@@ -4,6 +4,7 @@ from random import *
 from collections import deque
 import module_system.server as sv
 from module_other.calculation import *
+from module_other.color import *
 from module_object.number import int_to_string, LANG_LIST
 
 QUIZ_TYPE = {
@@ -35,8 +36,6 @@ QUIZ_NUMBER = {
     9: (randint(2,3), randint(2,3), randint(87,98), randint(86,99)),
     10:(randint(1,6), randint(7,9)**2, randint(1,6), randint(7,9)**2),
 }
-
-COLOR_WHITE = (255,255,255)
 
 class Quiz:
     font = None

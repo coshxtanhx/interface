@@ -26,6 +26,7 @@ def handle_events():
 def enter():
     dc.register_pos()
     om.GAZE_DETECT_TIMER = 0.03
+    om.is_camera_activated = True
     sv.background = Background()
     sv.cursor = GazeCursor()
     sv.information.append(Information('error'))
@@ -35,6 +36,7 @@ def enter():
     gw.add_object(sv.cursor, 'ui')
 
 def exit():
+    om.is_camera_activated = False
     gw.clear_world()
 
 def draw_all():

@@ -46,6 +46,7 @@ class STAGE:
     def start():
         om.clear_gaze_deque()
         STAGE.started = True
+        om.is_camera_activated = True
         STAGE.create_quiz_and_numbers()
     # def check_end():
     #     if STAGE.started and om.check_gaze():
@@ -57,8 +58,10 @@ class STAGE:
         sv.cursor.save_time()
         sv.cursor.reset_time()
         STAGE.current_level += 1
+        STAGE.started = False
+        om.is_camera_activated = False
+        sfm.sound_effect.play(choice(sfm.SE_GAZE_CHECK))
         if STAGE.current_level > LAST_STAGE:
-            gf.change_state('', None)
+            gf.change_state('check_analysis_state', None)
         else:
-            sfm.sound_effect.play(choice(sfm.SE_GAZE_CHECK))
             STAGE.start()
