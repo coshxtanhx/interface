@@ -54,7 +54,7 @@ class STAGE:
         for number in sv.numbers.copy():
             gw.remove_object(number)
         gw.remove_object(sv.quiz)
-        sv.cursor.save_time()
+        sv.cursor.save_time(STAGE.current_level)
         sv.cursor.reset_time()
         STAGE.current_level += 1
         STAGE.started = False

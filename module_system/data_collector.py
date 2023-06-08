@@ -41,10 +41,10 @@ user_gaze_data = {
 }
 
 user_cursor_time_data = {
-    '정답여부': [],
-    '암산시간':[],
-    '필산시간': [],
-    '입력시간': []
+    '정답여부': [None] * 10,
+    '암산시간':[None] * 10,
+    '필산시간': [None] * 10,
+    '입력시간': [None] * 10
 }
 
 def register_pos():
@@ -93,9 +93,9 @@ def add_gaze_data(xy_pos, pos = None):
     data = GazePosition(xy_pos[0], xy_pos[1])
     gaze_dict[pos].append(data)
 
-def save_cursor_time(is_correct, in_screen_center_time,
+def save_cursor_time(level, is_correct, in_screen_center_time,
                      in_screen_time, out_screen_time):
-    user_cursor_time_data['정답여부'].append(is_correct)
-    user_cursor_time_data['암산시간'].append(in_screen_center_time)
-    user_cursor_time_data['입력시간'].append(in_screen_time)
-    user_cursor_time_data['필산시간'].append(out_screen_time)
+    user_cursor_time_data['정답여부'][level-1] = is_correct
+    user_cursor_time_data['암산시간'][level-1] = in_screen_center_time
+    user_cursor_time_data['입력시간'][level-1] = in_screen_time
+    user_cursor_time_data['필산시간'][level-1] = out_screen_time

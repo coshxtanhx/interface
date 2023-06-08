@@ -43,8 +43,8 @@ class GazeCursor(Cursor):
         return screen_width * (1/5) <= self.x <= screen_width * (4/5) \
             and screen_height * (1/5) <= self.y <= screen_height * (4/5)
 
-    def save_time(self):
+    def save_time(self, level):
         # 화면 안에 있는 시간과 화면 밖을 보는 시간 저장
-        dc.save_cursor_time(self.is_correct, self.in_screen_center_time,
+        dc.save_cursor_time(level, self.is_correct, self.in_screen_center_time,
                             self.in_screen_time, self.out_screen_time)
 
