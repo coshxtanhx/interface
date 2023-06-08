@@ -5,7 +5,7 @@ import module_system.game_framework as gf
 import module_system.opencv_manager as om
 
 om.activate_opencv()
-pico2d.open_canvas('Math Quiz with Eye-Tracking', UI_WIDTH, UI_HEIGHT)
+pico2d.open_canvas('Math Quiz', UI_WIDTH, UI_HEIGHT)
 
 gf.activate_game_framework('play_state')
 
