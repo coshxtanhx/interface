@@ -24,7 +24,6 @@ class STAGE:
     current_level = 1
     answer = None
     users_choice = LEFT_BOTTOM # 임의의 초깃값
-    users_answer_list = [None] + [0] * LAST_STAGE
     def create_quiz_and_numbers():
         pos_list = list(POS_WITHOUT_CENTER_TUPLE)
         pos_list.remove(STAGE.users_choice)

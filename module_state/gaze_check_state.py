@@ -9,6 +9,7 @@ from module_object.information import Information
 from module_other.coordinates import *
 import module_system.opencv_manager as om
 import module_system.data_collector as dc
+import module_system.soundfile_manager as sfm
 
 def handle_events():
     events = get_events()
@@ -19,8 +20,10 @@ def handle_events():
         elif event == KESCD:
             gf.change_state('', None)
         elif event == KND:
+            sfm.sound_effect.play(sfm.SE_RETRY)
             gf.change_state('play_state', None)
         elif event == KYD:
+            sfm.sound_effect.play(sfm.SE_RETRY)
             gf.change_state('play_state_2', None)
 
 def enter():
@@ -43,32 +46,20 @@ def draw_all():
     clear_canvas()
     for objs in gw.all_objects():
         objs.draw()
-
-    # 화면 안에 있는 시간과 화면 밖에 있는 시간 표시
-    font = load_font('font/MaruBuri-Bold.ttf', 20)
-    in_screen_time = sv.cursor.in_screen_time
-    out_screen_time = sv.cursor.out_screen_time
-    font.draw(10, 30, f'In-screen time: {in_screen_time:.2f}s', (255, 255, 255))
-    font.draw(10, 70, f'Out-screen time: {out_screen_time:.2f}s', (255, 255, 255))
-
+    # 화면 안에 있는 시간과 화면 밖에 있는 시간 표시 - 디버깅
+    # font = load_font('font/MaruBuri-Bold.ttf', 20)
+    # in_screen_time = sv.cursor.in_screen_time
+    # out_screen_time = sv.cursor.out_screen_time
+    # font.draw(10, 30, f'In-screen time: {in_screen_time:.2f}s', (255, 255, 255))
+    # font.draw(10, 70, f'Out-screen time: {out_screen_time:.2f}s', (255, 255, 255))
     update_canvas()
 
 def update():
     om.check_gaze()
     for objs in gw.all_objects_copy():
         objs.update()
-
-    # 화면 안에 있는 시간과 화면 밖에 있는 시간 출력
-    in_screen_time = sv.cursor.in_screen_time
-    out_screen_time = sv.cursor.out_screen_time
-    print(f'In-screen time: {in_screen_time:.2f}s')
-    print(f'Out-screen time: {out_screen_time:.2f}s')
-
-    # 화면 안에 있는 시간과 화면 밖에 있는 시간이 임계값을 넘었을 때의 처리
-    if in_screen_time > GazeCursor.IN_SCREEN_TIME_THRESHOLD:
-        # 화면 안에 있는 시간이 임계값을 넘었을 때의 처리
-        pass
-
-    if out_screen_time > GazeCursor.OUT_SCREEN_TIME_THRESHOLD:
-        # 화면 밖에 있는 시간이 임계값을 넘었을 때의 처리
-        pass
+    # 화면 안에 있는 시간과 화면 밖에 있는 시간 출력 - 디버깅
+    # in_screen_time = sv.cursor.in_screen_time
+    # out_screen_time = sv.cursor.out_screen_time
+    # print(f'In-screen time: {in_screen_time:.2f}s')
+    # print(f'Out-screen time: {out_screen_time:.2f}s')

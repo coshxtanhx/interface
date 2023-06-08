@@ -22,3 +22,4 @@ class Cursor:
     def reset_time(self):
         self.in_screen_time = 0
         self.out_screen_time = 0
+        self.in_screen_center_time = 0

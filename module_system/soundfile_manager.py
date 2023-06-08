@@ -3,6 +3,8 @@ from collections import defaultdict
 
 SE_COMPLETED = 'sound/zrescue.wav'
 SE_GAZE_CHECK = ['sound/piano_%d.wav' % i for i in range(1, 5)]
+SE_NEXT_PAGE = 'sound/NextPage.wav'
+SE_RETRY = 'sound/Door1Opn.wav'
 
 class SoundEffect:
     se_dict = defaultdict(str)

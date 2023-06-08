@@ -1,6 +1,6 @@
 from pico2d import *
 
-KESCD, KAD, KDD, KND, KYD,\
+KESCD, KAD, KDD, KND, KYD, KQD, KWD,\
 QUIT, *_ = range(1, 10)
 
 EVENT_DICT = {
@@ -10,6 +10,8 @@ EVENT_DICT = {
     (SDL_KEYDOWN, SDLK_d, None): KDD,
     (SDL_KEYDOWN, SDLK_n, None): KND,
     (SDL_KEYDOWN, SDLK_y, None): KYD,
+    (SDL_KEYDOWN, SDLK_q, None): KQD,
+    (SDL_KEYDOWN, SDLK_w, None): KWD,
     (SDL_QUIT, None, None): QUIT
 }
 

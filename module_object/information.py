@@ -6,7 +6,6 @@ import module_system.game_framework as gf
 import module_system.game_world as gw
 from module_system.debug_manager import *
 import module_system.stage_manager as sm
-from module_object.gazecursor import GazeCursor
 
 class Information:
     image = dict()
@@ -19,6 +18,8 @@ class Information:
             Information.image['tutorial'] = load_image('images/tutorial.png')
             Information.image['check'] = load_image('images/information_please_check.png')
             Information.image['error'] = load_image('images/information_error.png')
+            Information.image['end'] = load_image('images/information_end.png')
+            Information.image['result'] = load_image('images/information_result.png')
         self.type = type
         self.image = Information.image[self.type]
         self.time_remain = 0.1 if debug_mode else 4.999
@@ -35,6 +36,10 @@ class Information:
             self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 + 90)
         elif self.type == 'error' and not sv.cursor.in_screen and sv.cursor.out_screen_time > 1.5:
             self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 - 220)
+        elif self.type == 'end':
+            self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 - 230)
+        elif self.type == 'result':
+            self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 + 230)
     def update(self):
         if self.type == 'start':
             if self.time_remain > 0.0:

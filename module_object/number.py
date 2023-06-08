@@ -33,9 +33,9 @@ class Number:
                 self.timer = 2.0
             if self.timer <= 0:
                 if self.is_answer:
-                    msm.STAGE.users_answer_list[msm.STAGE.current_level] = 1
+                    sv.cursor.is_correct = True
                 else:
-                    msm.STAGE.users_answer_list[msm.STAGE.current_level] = -1
+                    sv.cursor.is_correct = False
                 msm.STAGE.users_choice = self.where
                 msm.STAGE.end()
     def draw(self):
