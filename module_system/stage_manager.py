@@ -89,6 +89,7 @@ class STAGE:
     started = False
     current_level = 1
     answer_of_tutorial = None
+    restarted = False
     def get_answer_of_current_level():
         return stages[STAGE.current_level][0][2]
     def shuffle_stage():
@@ -140,11 +141,13 @@ class STAGE:
         for number in sv.numbers.copy():
             gw.remove_object(number)
         STAGE.current_level += 1
-        if STAGE.current_level >= 10:
+        if STAGE.current_level >= 10 and not STAGE.restarted:
             STAGE.add_stage()
         if STAGE.current_level > LAST_STAGE:
             STAGE.started = False
+            STAGE.restarted = True
             om.is_camera_activated = False
+            STAGE.current_level = 1
             dc.save_data()
             gf.change_state('gaze_check_state', None)
         else:

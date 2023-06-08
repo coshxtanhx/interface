@@ -61,6 +61,8 @@ class STAGE:
         om.is_camera_activated = False
         sfm.sound_effect.play(choice(sfm.SE_GAZE_CHECK))
         if STAGE.current_level > LAST_STAGE:
+            STAGE.started = False
+            STAGE.current_level = 1
             gf.change_state('analysis_check_state', None)
         else:
             STAGE.start()

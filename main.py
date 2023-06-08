@@ -7,7 +7,7 @@ import module_system.opencv_manager as om
 om.activate_opencv()
 pico2d.open_canvas('Math Quiz with Eye-Tracking', UI_WIDTH, UI_HEIGHT)
 
-gf.activate_game_framework('analysis_check_state')
+gf.activate_game_framework('play_state')
 
 om.capture.release()
 pico2d.close_canvas()
