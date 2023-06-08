@@ -31,7 +31,9 @@ class Information:
         elif self.type == 'exit':
             self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 - 160)
         elif self.type == 'start':
-            self.image[int(self.time_remain)].draw(UI_WIDTH//2, UI_HEIGHT//2)
+            i = int(self.time_remain)
+            if i < 0: i = 0
+            self.image[i].draw(UI_WIDTH//2, UI_HEIGHT//2)
         elif self.type == 'check':
             self.image.draw(UI_WIDTH//2, UI_HEIGHT//2 + 90)
         elif self.type == 'error' and not sv.cursor.in_screen and sv.cursor.out_screen_time > 1.5:
