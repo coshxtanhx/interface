@@ -6,6 +6,7 @@ import module_system.game_world as gw
 from module_object.background import Background
 from module_object.information import Information
 import module_system.stage_manager as sm
+import module_system.opencv_manager as om
 
 def handle_events():
     events = get_events()
@@ -20,6 +21,7 @@ def handle_events():
             gf.change_state('play_state_2', None) # 디버그 전용 기능
 
 def enter():
+    om.GAZE_DETECT_TIMER = 0.1
     sm.STAGE.shuffle_stage()
     sv.background = Background()
     sv.information.append(Information('play'))

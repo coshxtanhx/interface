@@ -65,6 +65,7 @@ def save_data():
         for data in gaze_dict[pos]:
             sum_of_data += data
         user_gaze_data[pos] = sum_of_data // data_len
+        gaze_dict[pos] = []
 
     file = open('data/eight_direction.sav', 'wb')
     pickle.dump(user_gaze_data, file)
