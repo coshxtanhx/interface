@@ -3,17 +3,17 @@
 
 #define MyAppName "MathQuiz"
 #define MyAppVersion "1.0.0"
-#define MyAppPublisher "My Company, Inc."
-#define MyAppURL "https://www.example.com/"
+#define MyAppPublisher "."
+#define MyAppURL "."
 #define MyAppExeName "MathQuiz.exe"
-#define MyAppAssocName MyAppName + ""
+#define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{F0B62FE2-DA29-4AED-826E-B4332742D682}
+AppId={{B341B4A6-2698-4D4D-91D9-9C2BDEBE858D}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -41,7 +41,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Users\yongj\OneDrive\문서\GitHub\interface\dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\yongj\OneDrive\문서\GitHub\interface\dist\_files\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\yongj\OneDrive\문서\GitHub\interface\dist\__f\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
